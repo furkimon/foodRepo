@@ -15,25 +15,27 @@ import EditFoodScreen from './src/screen/EditFoodScreen';
 
 import InfoScreen from './src/screen/InfoScreen';
 import ItemsScreen from './src/screen/ItemsScreen';
+import ShowFoodScreen from './src/screen/ShowFoodScreen';
 
-import {Provider} from './src/context/FoodContext';
+import { Provider } from './src/context/FoodContext';
 
 const switchNavigator = createSwitchNavigator({
-    loginFlow : createStackNavigator({
-        Signup : SignUpScreen,
-        Signin : SignInScreen
+    loginFlow: createStackNavigator({
+        Signup: SignUpScreen,
+        Signin: SignInScreen
     }),
-    mainFlow : createBottomTabNavigator({
-        diaryFlow : createStackNavigator({
-            Diary : DiaryScreen,
-            Add : AddFoodScreen
+    mainFlow: createBottomTabNavigator({
+        diaryFlow: createStackNavigator({
+            Diary: DiaryScreen,
+            Add: AddFoodScreen
         }),
-        profileFlow : createStackNavigator({
-            Profile : ProfileScreen,
-            Info : InfoScreen,
+        profileFlow: createStackNavigator({
+            Profile: ProfileScreen,
+            Info: InfoScreen,
             itemsFlow: createStackNavigator({
-                Items : ItemsScreen,
-                Edit : EditFoodScreen
+                Items: ItemsScreen,
+                Edit: EditFoodScreen,
+                Show: ShowFoodScreen
             })
         })
     })
@@ -43,8 +45,8 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
     return (
-       <Provider>
-            <App/>
-       </Provider>
+        <Provider>
+            <App />
+        </Provider>
     )
 };

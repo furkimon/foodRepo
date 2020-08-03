@@ -4,13 +4,12 @@ import FoodForm from '../components/FoodForm';
 
 
 const EditFoodScreen = ({ navigation }) => {
-// route = {navigation.navigate('Diary')} (in foodlist)
 
     return <View>
         <FoodForm 
-            navigation = {navigation}
             headerText = "Edit Food"
-            routeName = {'Profile'}
+            routeName = 'Items'
+            isEdit = {true}
         />
     </View>
 }

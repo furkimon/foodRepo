@@ -8,9 +8,9 @@ const AddFoodScreen = ({ navigation }) => {
 
     return <View>
         <FoodForm 
-            navigation = {navigation}
             headerText = "Add Food"
             routeName = 'Diary'
+            isEdit = {false}
         />
     </View>
 }

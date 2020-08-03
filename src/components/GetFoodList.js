@@ -3,7 +3,7 @@ import { ActivityIndicator, StyleSheet } from 'react-native';
 import foodApi from '../api/foodApi';
 import FoodDetail from './FoodDetail';
 
-const GetFoodList = ({ navigation, routeName }) => {
+const GetFoodList = ({ navigation, routeName, isEdit}) => {
     const [isLoading, setLoading] = useState(true);
     const [results, setResults] = useState([]);
 
@@ -27,8 +27,8 @@ const GetFoodList = ({ navigation, routeName }) => {
                         <FoodDetail
                             key={movie.id}
                             movie={movie}
-                            navigation={navigation}
                             routeName={routeName}
+                            isEdit = {isEdit}
                         />
                     )
                 )
@@ -36,9 +36,5 @@ const GetFoodList = ({ navigation, routeName }) => {
         </>
     )
 }
-const styles = StyleSheet.create({
-    activityIndicatorStyle: {
-        
-    }
-})
+const styles = StyleSheet.create({})
 export default GetFoodList;
