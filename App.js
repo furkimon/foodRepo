@@ -11,6 +11,7 @@ import DiaryScreen from './src/screen/DiaryScreen';
 import ProfileScreen from './src/screen/ProfileScreen';
 
 import AddFoodScreen from './src/screen/AddFoodScreen';
+import CreateFoodScreen from './src/screen/CreateFoodScreen';
 import EditFoodScreen from './src/screen/EditFoodScreen';
 
 import InfoScreen from './src/screen/InfoScreen';
@@ -18,6 +19,7 @@ import ItemsScreen from './src/screen/ItemsScreen';
 import ShowFoodScreen from './src/screen/ShowFoodScreen';
 
 import { Provider } from './src/context/FoodContext';
+
 
 const switchNavigator = createSwitchNavigator({
     loginFlow: createStackNavigator({
@@ -27,7 +29,8 @@ const switchNavigator = createSwitchNavigator({
     mainFlow: createBottomTabNavigator({
         diaryFlow: createStackNavigator({
             Diary: DiaryScreen,
-            Add: AddFoodScreen
+            Add: AddFoodScreen,
+            Create : CreateFoodScreen
         }),
         profileFlow: createStackNavigator({
             Profile: ProfileScreen,

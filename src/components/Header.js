@@ -1,12 +1,19 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, Button} from 'react-native';
+import {withNavigation} from 'react-navigation';
 
-const Header = (props) => {
+const Header = ({navigation, headerText, headerButtonText}) => {
     const {textStyle, viewStyle} = styles;
-
+    
     return (
         <View style = {viewStyle}>
-            <Text style = {textStyle}>{props.headerText}</Text>
+            <Text style = {textStyle}>{headerText}</Text>
+            {headerButtonText ? 
+                <Button 
+                    title = {headerButtonText}
+                    onPress = {() => navigation.navigate('Create')}
+                />
+            : null}
         </View>
     )
 }
@@ -32,4 +39,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Header;
+export default withNavigation(Header);

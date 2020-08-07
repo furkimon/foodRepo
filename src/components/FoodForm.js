@@ -4,12 +4,15 @@ import GetFoodList from './GetFoodList';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 
-const FoodForm = ({ headerText, routeName, isEdit, showRoute}) => {
+const FoodForm = ({ headerButtonText, headerText, routeName, isEdit, showRoute}) => {
     const [term, setTerm] = useState('');
 
     return <View>
 
-        <Header headerText={headerText} />
+        <Header 
+            headerText={headerText} 
+            headerButtonText = {headerButtonText}
+        />
 
         <SearchBar
             term = {term} 

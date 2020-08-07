@@ -45,8 +45,41 @@ app.post('/send-data', (req, res) => {
     
 })
 
+app.post('/delete', (req,res) => {
+    Food.findByIdAndRemove(req.body.id)
+    .then(data =>{
+        console.log(data)
+        res.send("deleted")
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
+
+app.post('/update', (req,res) => {
+    Food.findByIdAndUpdate(req.body.id, {
+        name: req.body.name,
+        kcal: req.body.kcal,
+        protein: req.body.protein,
+        fat: req.body.fat,
+        carbohydrate: req.body.carbohydrate,
+        fiber: req.body.fiber
+    }).then(data => {
+        console.log(data)
+        res.send("updated")
+    })
+    .catch(err => {
+        console.log(err)
+    })
+})
+
 app.get('/', (req, res) => {
-    res.send('Welcole to Node js')
+    Food.find({}).then(data => {
+        res.send(data)
+    }).catch(err => {
+        console.log(err)
+    })
+    
 })
 
 app.listen(3000, () => {

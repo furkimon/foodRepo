@@ -8,7 +8,8 @@ const AddFoodScreen = ({ navigation }) => {
 
     return <View>
         <FoodForm 
-            headerText = "Add Food"
+            headerText = "Add Food to Diary"
+            headerButtonText = "Create Food"
             routeName = 'Diary'
             isEdit = {false}
         />
