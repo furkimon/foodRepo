@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, Button, StyleSheet, ScrollView} from 'react-native';
+import {View, Button, ToastAndroid} from 'react-native';
 import {Input} from 'react-native-elements';
 import Card from './Card';
 import CardSection from './CardSection';
 import Header from './Header';
+import {withNavigation} from 'react-navigation';
 
-const CreationForm = ({headerText}) => {
+const CreationForm = ({headerText, navigation, isEdit, item}) => {
   const [name, setName] = useState('');
   const [kcal, setKcal] = useState('');
   const [protein, setProtein] = useState('');
@@ -13,8 +14,10 @@ const CreationForm = ({headerText}) => {
   const [carbohydrate, setCarbohydrate] = useState('');
   const [fiber, setFiber] = useState('');
 
+  //const { id } = item; // nameItem, kcalItem, proteinItem, fatItem, carbohydrateItem, fiberItem
+
   const submitData = () => {
-    fetch("http://localhost:3000/send-data", {
+    fetch("http://10.0.2.2:3000/send-data", {
         method: "post",
         headers: {
             'Content-Type' : 'application/json'
@@ -28,16 +31,32 @@ const CreationForm = ({headerText}) => {
             fiber
         })
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-    })
+    .then(res => res.json())  
+}
+
+const updateData = () => {
+  fetch("http://10.0.2.2:3000/update", {
+      method: "post",
+      headers: {
+          'Content-Type' : 'application/json'
+      },
+      body:JSON.stringify({
+          name,
+          kcal,
+          protein,
+          fat,
+          carbohydrate,
+          fiber
+      })
+  })
+  .then(res => res.json())  
 }
 
   return (
+    
     <View>
       <Header headerText={headerText} />
-      <View style={{flex: 1}}>
+      <View>
         <Card>
           <CardSection>
             <Input
@@ -98,14 +117,29 @@ const CreationForm = ({headerText}) => {
             />
           </CardSection>
         </Card>
-
-        <Button
-          title="Save"
-          onPress={() => submitData(name, kcal, protein, fat, carbohydrate, fiber)}
-        />
+      {isEdit ?
+          <Button
+            title="Update"
+            onPress={() => {
+              updateData(name, kcal, protein, fat, carbohydrate, fiber);
+              ToastAndroid.show(name + ' updated', ToastAndroid.SHORT);
+              navigation.navigate('Items');
+          }}
+      />
+      :
+          <Button
+            title="Save"
+            onPress={() => {
+              submitData(name, kcal, protein, fat, carbohydrate, fiber);
+              ToastAndroid.show(name + ' added', ToastAndroid.SHORT);
+              navigation.navigate('Items');
+            }}
+          />
+      }
+        
       </View>
     </View>
   );
 };
 
-export default CreationForm;
+export default withNavigation(CreationForm);

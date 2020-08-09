@@ -38,7 +38,7 @@ app.post('/send-data', (req, res) => {
     food.save()
     .then(data => {
         console.log(data)
-        res.send("success")
+        //res.send("success")
     }).catch(err => {
         console.log(err)
     })

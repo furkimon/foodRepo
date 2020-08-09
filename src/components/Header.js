@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, StyleSheet, Button} from 'react-native';
 import {withNavigation} from 'react-navigation';
 
-const Header = ({navigation, headerText, headerButtonText}) => {
+const Header = ({ navigation, headerText, headerButtonText}) => {
     const {textStyle, viewStyle} = styles;
     
     return (

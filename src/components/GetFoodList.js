@@ -1,38 +1,52 @@
 import React, { useState, useEffect } from 'react';
-import { ActivityIndicator, StyleSheet } from 'react-native';
-import foodApi from '../api/foodApi';
+import { ActivityIndicator, StyleSheet, ToastAndroid } from 'react-native';
 import FoodDetail from './FoodDetail';
+import { ScrollView } from 'react-native-gesture-handler';
 
-const GetFoodList = ({ navigation, routeName, isEdit}) => {
+const GetFoodList = ({ isItem }) => {
     const [isLoading, setLoading] = useState(true);
     const [results, setResults] = useState([]);
 
-    const getApi = async () => {
-        const response = await foodApi.get('/movies.json');
-        setResults(response.data.movies);
-        setLoading(false);
+    const getMongo = async () => {
+        await fetch("http://10.0.2.2:3000", {
+            method: "get",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then((json) => {
+
+                //ToastAndroid.show("json", ToastAndroid.SHORT)
+                setResults(json);
+                setLoading(false);
+                return json.data;
+            })
     }
 
     useEffect(() => {
-        getApi();
-    }, []);
+        getMongo();
+
+        return () => {getMongo}
+    }, [results]);
 
     return (
         <>
-            {isLoading ? <ActivityIndicator
-            size = "large"
-            color = "#000" />
-                : (
-                    results.map(movie =>
-                        <FoodDetail
-                            key={movie.id}
-                            movie={movie}
-                            routeName={routeName}
-                            isEdit = {isEdit}
-                        />
+            <ScrollView>
+                {isLoading ? <ActivityIndicator
+                    size="large"
+                    color="#000" />
+                    : (
+                        results.map(item =>
+                            <FoodDetail
+                                key={item._id}
+                                item={item}
+                                isItem={isItem}
+                            />
+                        )
                     )
-                )
-            }
+                }
+            </ScrollView>
         </>
     )
 }

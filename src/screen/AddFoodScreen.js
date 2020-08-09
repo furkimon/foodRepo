@@ -3,15 +3,13 @@ import { View, StyleSheet } from 'react-native';
 import FoodForm from '../components/FoodForm';
 
 
-const AddFoodScreen = ({ navigation }) => {
+const AddFoodScreen = () => {
 
 
-    return <View>
+    return <View style={{flex: 1}}>
         <FoodForm 
             headerText = "Add Food to Diary"
-            headerButtonText = "Create Food"
-            routeName = 'Diary'
-            isEdit = {false}
+            isItem = {false}
         />
     </View>
 }

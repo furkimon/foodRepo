@@ -1,22 +1,23 @@
 import createDataContext from './createDataContext';
 
 
+
 const foodReducer = (state, action) => {
     switch (action.type){
         case 'delete_food' :
             return state.filter((food) => food.id !== action.payload)
         case 'add_food' :
             return [...state, {
-                id : Math.floor(Math.random() * 99999),
-                title : action.payload.title }];
+                id : Math.floor(Math.random() * 9999).toString(),
+                name : action.payload.name }];
         default :
             return state;
     }
 }
 
 const addFood = (dispatch) => {
-    return (movie) => {
-        dispatch({type : 'add_food', payload : movie})
+    return (item) => {
+        dispatch({type : 'add_food', payload : item})
     }
 }
 

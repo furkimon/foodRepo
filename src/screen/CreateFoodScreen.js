@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import {Text, Button, View, StyleSheet} from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
 import CreationForm from '../components/CreationForm';
 import { ScrollView } from 'react-native-gesture-handler';
-
+import {withNavigation} from 'react-navigation';
 const CreateFood = () => {
     
     
 
     return <View>
         
-        <ScrollView>
+        <ScrollView >
             <CreationForm 
                 headerText = "Create Food"
+                isEdit = {false}
             />
         </ScrollView>
 
     </View>
 }
 
-export default CreateFood;
+export default withNavigation(CreateFood);

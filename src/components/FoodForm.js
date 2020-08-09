@@ -3,11 +3,12 @@ import { View, StyleSheet, Text } from 'react-native';
 import GetFoodList from './GetFoodList';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
+import { ScrollView } from 'react-native-gesture-handler';
 
-const FoodForm = ({ headerButtonText, headerText, routeName, isEdit, showRoute}) => {
+const FoodForm = ({ headerButtonText, headerText, isItem}) => {
     const [term, setTerm] = useState('');
 
-    return <View>
+    return <View style={{flex: 1}}>
 
         <Header 
             headerText={headerText} 
@@ -20,11 +21,11 @@ const FoodForm = ({ headerButtonText, headerText, routeName, isEdit, showRoute})
             onTermSubmitted = { () => console.log('term submitted')}
         />
 
-        <GetFoodList
-            routeName={routeName}
-            isEdit = {isEdit}
-        />
-
+        <ScrollView >
+            <GetFoodList
+                isItem = {isItem}
+            />
+        </ScrollView>
     </View>
 }
 

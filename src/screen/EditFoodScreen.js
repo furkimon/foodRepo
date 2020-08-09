@@ -1,20 +1,19 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import FoodForm from '../components/FoodForm';
+import { View, StyleSheet } from 'react-native';
 import CreationForm from '../components/CreationForm';
-import {ScrollView} from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 
-/*<FoodForm 
-            
-            routeName = 'Items'
-            isEdit = {true}
-        />
-        */
-const EditFoodScreen = ({navigation}) => {
+
+const EditFoodScreen = ({ item, isEdit }) => {
+ // const { name, kcal, protein, fat, carbohydrate, fiber } = item;
+
   return (
     <View>
       <ScrollView>
-        <CreationForm headerText="Edit Food" />
+        <CreationForm
+          headerText="Edit Food"
+          item={item}
+          isEdit = {true} />
       </ScrollView>
     </View>
   );

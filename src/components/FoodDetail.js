@@ -5,38 +5,58 @@ import CardSection from '../components/CardSection';
 import { Context } from '../context/FoodContext';
 import { withNavigation } from 'react-navigation';
 
-const FoodDetail = ({ movie, routeName, isEdit, navigation }) => {
-    const { title, releaseYear, id } = movie;
+const FoodDetail = ({ item, isItem, navigation }) => {
+    const { name, kcal, protein, fat, carbohydrate, fiber } = item;
     const { addFood } = useContext(Context);
 
     return (
         <TouchableOpacity 
-            disabled = {!isEdit} 
-            onPress = {() => navigation.navigate('Show', {movie})}
+            disabled = {!isItem} 
+            onPress = {() => navigation.navigate('Edit', {item})}
         >
             <Card>
                 <View style={styles.cardStyle}>
                     <CardSection>
                         <View style={styles.idStyle}>
-                            <Text>{id}</Text>
+                            <Text>{name}</Text>
                         </View>
                     </CardSection>
                     <CardSection>
-                        <View style={styles.contentStyle}>
-                            <Text>{releaseYear}</Text>
-                            <Text>{title}</Text>
+                        <View style={styles.idStyle}>
+                            <Text>{kcal}</Text>
                         </View>
                     </CardSection>
+                    <CardSection>
+                        <View style={styles.idStyle}>
+                            <Text>{protein}</Text>
+                        </View>
+                    </CardSection>
+                    <CardSection>
+                        <View style={styles.idStyle}>
+                            <Text>{fat}</Text>
+                        </View>
+                    </CardSection>
+                    <CardSection>
+                        <View style={styles.idStyle}>
+                            <Text>{carbohydrate}</Text>
+                        </View>
+                    </CardSection>
+                    <CardSection>
+                        <View style={styles.idStyle}>
+                            <Text>{fiber}</Text>
+                        </View>
+                    </CardSection>
+                    
 
-                    {isEdit ? null :
+                    {isItem ? null :
                         <CardSection >
                             <View style={styles.buttonStyle}>
                                 <Button
                                     title="Add this"
                                     onPress={() => {
-                                        addFood(movie);
-                                        ToastAndroid.show(title + ' added', ToastAndroid.SHORT);
-                                        navigation.navigate(routeName)
+                                        addFood(item);
+                                        ToastAndroid.show(name + ' added', ToastAndroid.SHORT);
+                                        navigation.navigate('Diary')
                                     }}
                                 />
                             </View>

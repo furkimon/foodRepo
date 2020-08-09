@@ -3,8 +3,8 @@ import {View, Text, StyleSheet} from 'react-native';
 
 const ShowFoodScreen = ({navigation}) => {
     
-    const movie = navigation.getParam('movie');
-    const { title, releaseYear, id } = movie;
+    const item = navigation.getParam('item');
+    const { name, kcal, protein, fat, carbohydrate, fiber } = item;
     
     return (
         <View>
@@ -12,7 +12,7 @@ const ShowFoodScreen = ({navigation}) => {
                 ShowFoodScreen
             </Text>
             <Text>
-                {id} {title} {releaseYear}
+            {name}, {kcal}, {protein}, {fat}, {carbohydrate}, {fiber}
             </Text>
         </View>
     )

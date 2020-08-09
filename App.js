@@ -30,13 +30,14 @@ const switchNavigator = createSwitchNavigator({
         diaryFlow: createStackNavigator({
             Diary: DiaryScreen,
             Add: AddFoodScreen,
-            Create : CreateFoodScreen
+            
         }),
         profileFlow: createStackNavigator({
             Profile: ProfileScreen,
             Info: InfoScreen,
+            Items: ItemsScreen,
             itemsFlow: createStackNavigator({
-                Items: ItemsScreen,
+                Create : CreateFoodScreen,
                 Edit: EditFoodScreen,
                 Show: ShowFoodScreen
             })

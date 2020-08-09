@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Text, View, StyleSheet, Button, FlatList, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Button, FlatList } from 'react-native';
 import CardSection from '../components/CardSection';
 import Card from '../components/Card';
 import { Context } from '../context/FoodContext';
@@ -37,18 +37,16 @@ const DiaryScreen = ({ navigation }) => {
             <View >
                 <FlatList
                     data={state}
-                    keyExtractor={food => food.id.toString()}
+                    keyExtractor={item => item.id}
                     renderItem={({ item }) => {
                         return (
-                            <TouchableOpacity>
-                                <CardSection style = {styles.foodItemStyle}>
-                                    <Text>{item.id} - {item.title}</Text>
-                                    <Button 
-                                        title = "Delete"
-                                        onPress = {() => deleteFood(item.id)}
-                                    />
-                                </CardSection>
-                            </TouchableOpacity>
+                            <CardSection style={styles.foodItemStyle}>
+                                <Text>{item.id} - {item.name}</Text>
+                                <Button
+                                    title="Delete"
+                                    onPress={() => deleteFood(item.id)}
+                                />
+                            </CardSection>
                         )
                     }}
                 />
@@ -71,8 +69,8 @@ const styles = StyleSheet.create({
     textStyle: {
         alignItems: 'center'
     },
-    foodItemStyle : {
-        alignContent : 'stretch'  // tum satir olmeyo :(
+    foodItemStyle: {
+        alignContent: 'stretch'  // tum satir olmeyo :(
     }
 });
 
