@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('./model/FoodModel');
-
+const ObjectId = require('mongodb').ObjectID;
 
 app.use(bodyParser.json()); //top of the route for not getting errors
 
@@ -66,7 +66,7 @@ app.post('/update', (req,res) => {
         fiber: req.body.fiber
     }).then(data => {
         console.log(data)
-        res.send("updated")
+        //res.send("updated")
     })
     .catch(err => {
         console.log(err)

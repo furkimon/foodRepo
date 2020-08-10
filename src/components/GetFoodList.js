@@ -14,7 +14,7 @@ const GetFoodList = ({ isItem }) => {
                 'Content-Type': 'application/json'
             }
         })
-            .then(res => res.json())
+            .then(res => res.json()) // gives promise
             .then((json) => {
 
                 //ToastAndroid.show("json", ToastAndroid.SHORT)
