@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const FoodForm = ({ headerButtonText, headerText, isItem}) => {
+const FoodForm = ({ headerButtonText, headerText, isItem, isDinner}) => {
     const [term, setTerm] = useState('');
 
     return <View style={{flex: 1}}>
@@ -24,6 +24,7 @@ const FoodForm = ({ headerButtonText, headerText, isItem}) => {
         <ScrollView >
             <GetFoodList
                 isItem = {isItem}
+                isDinner = {isDinner}
             />
         </ScrollView>
     </View>

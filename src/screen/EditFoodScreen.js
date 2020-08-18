@@ -4,10 +4,14 @@ import CreationForm from '../components/CreationForm';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
-const EditFoodScreen = ({ item, isEdit }) => {
- // const { name, kcal, protein, fat, carbohydrate, fiber } = item;
+const EditFoodScreen = ({navigation}) => {
+ 
+
+  const item = navigation.getParam('item');
+  
 
   return (
+    
     <View>
       <ScrollView>
         <CreationForm

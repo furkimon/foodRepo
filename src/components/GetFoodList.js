@@ -3,9 +3,10 @@ import { ActivityIndicator, StyleSheet, ToastAndroid } from 'react-native';
 import FoodDetail from './FoodDetail';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const GetFoodList = ({ isItem }) => {
+const GetFoodList = ({ isItem, isDinner }) => {
     const [isLoading, setLoading] = useState(true);
     const [results, setResults] = useState([]);
+    let isMounted = false;
 
     const getMongo = async () => {
         await fetch("http://10.0.2.2:3000", {
@@ -25,9 +26,14 @@ const GetFoodList = ({ isItem }) => {
     }
 
     useEffect(() => {
-        getMongo();
-
-        return () => {getMongo}
+        isMounted = true;
+        if(isMounted){
+            getMongo();
+        }
+        
+        return () => {
+            isMounted = false;
+        }
     }, [results]);
 
     return (
@@ -42,6 +48,7 @@ const GetFoodList = ({ isItem }) => {
                                 key={item._id}
                                 item={item}
                                 isItem={isItem}
+                                isDinner = {isDinner}
                             />
                         )
                     )

@@ -12,8 +12,8 @@ import CardSection from '../components/CardSection';
 import {Context} from '../context/FoodContext';
 import {withNavigation} from 'react-navigation';
 
-const FoodDetail = ({item, isItem, navigation}) => {
-  const {name, kcal, protein, fat, carbohydrate, fiber} = item;
+const FoodDetail = ({item, isItem, navigation, isDinner}) => {
+  const {_id, name, kcal, protein, fat, carbohydrate, fiber} = item;
   const {addFood, deleteFood} = useContext(Context);
 
   return (
@@ -22,7 +22,7 @@ const FoodDetail = ({item, isItem, navigation}) => {
       onPress={() => navigation.navigate('Edit', {item})}>
       <Card>
         <View style={styles.cardStyle}>
-          <CardSection>
+        <CardSection>
             <View style={styles.idStyle}>
               <Text>{name}</Text>
             </View>
@@ -59,7 +59,7 @@ const FoodDetail = ({item, isItem, navigation}) => {
                 <Button
                   title="DEL"
                   onPress={() => {
-                    deleteFood(item);
+                    deleteFood(_id);
                     ToastAndroid.show(name + ' deleted', ToastAndroid.SHORT);
                   }}
                 />
@@ -71,7 +71,8 @@ const FoodDetail = ({item, isItem, navigation}) => {
                 <Button
                   title="Add this"
                   onPress={() => {
-                    addFood(item);
+                    const foodItem = Object.assign(item, isDinner);
+                    addFood(foodItem);
                     ToastAndroid.show(name + ' added', ToastAndroid.SHORT);
                     navigation.navigate('Diary');
                   }}

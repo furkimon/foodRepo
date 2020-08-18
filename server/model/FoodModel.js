@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 const FoodSchema = new mongoose.Schema({
     name : String,
-    kcal : Number,
-    protein : Number,
-    fat : Number,
-    carbohydrate : Number,
-    fiber : Number
+    kcal : String,
+    protein : String,
+    fat : String,
+    carbohydrate : String,
+    fiber : String
 });
 
 mongoose.model("food", FoodSchema);
